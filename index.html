@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SabariGiri</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000, // animation duration
+            once: true      // whether animation happens only once - while scrolling down
+        });
+    </script>
+    <style>
+        body {
+            position: relative;
+        }
+
+        .wdt {
+            height: 100vh;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        <style >
+        .typewriter, .typewriter1 {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            font-family: 'Arbutus';
+        }
+
+        /* active typing cursor */
+        .cursor {
+            border-right: .15em solid orange;
+            animation: blink-caret .75s step-end infinite;
+        }
+
+        /* blinking caret */
+        @keyframes blink-caret {
+            from, to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: orange
+            }
+        }
+
+        .timeline {
+            position: relative;
+            margin-left: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #82aaff; /* Accent line color */
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -12px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            background-color: #82aaff; /* Accent dot color */
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 8px 3px rgba(130, 170, 255, 0.5);
+        }
+
+        .project-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+            border-left: 5px solid #ffcc80; /* Example border */
+            background-color: #393e46;
+            color: #eeeeee;
+        }
+
+            .project-card.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Hover effect */
+            .project-card:hover {
+                transform: translateY(0) scale(1.05);
+                box-shadow: 0 10px 20px rgba(255, 204, 128, 0.4);
+                border-left-color: #ffb347; /* brighter border */
+                cursor: pointer;
+            }
+
+        #Projects .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(255, 204, 128, 0.5);
+        }
+        /* Smooth fade in on scroll */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #Projects .card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+            #Projects .card:nth-child(1) {
+                animation-delay: 0.1s;
+            }
+
+            #Projects .card:nth-child(2) {
+                animation-delay: 0.3s;
+            }
+
+            #Projects .card:nth-child(3) {
+                animation-delay: 0.5s;
+            }
+
+        /* Initial hidden state */
+        .project-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+            /* When visible */
+            .project-card.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+    </style>
+
+
+
+
+    <script>
+        const text1 = "Hello, welcome to my portfolio!";
+        const text2 = "Thank you for showing interest in me";
+
+        let i = 0;
+        let j = 0;
+
+        // Typewriter for first line
+        function typeLine1() {
+            if (i < text1.length) {
+                document.getElementById("line1").innerHTML += text1.charAt(i);
+                i++;
+                setTimeout(typeLine1, 100);
+            } else {
+                // remove cursor from h1, add to h2
+                document.getElementById("line1").classList.remove("cursor");
+                document.getElementById("line2").classList.add("cursor");
+                setTimeout(typeLine2, 500);
+            }
+        }
+
+        // Typewriter for second line
+        function typeLine2() {
+            if (j < text2.length) {
+                document.getElementById("line2").innerHTML += text2.charAt(j);
+                j++;
+                setTimeout(typeLine2, 100);
+            }
+        }
+
+        window.onload = typeLine1;
+    </script>
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#Welcome">Welcome</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#About">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Education">Education</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Skills">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Experience">Experience</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Projects">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contacts</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="Welcome" class="container-fluid bg-dark text-white text-center vh-100 d-flex flex-column justify-content-center align-items-center">
+
+        <h1 id="line1" class="typewriter cursor"></h1>
+        <h3 id="line2" class="typewriter1"></h3>
+
+    </div>
+
+
+
+    <!--<div id="About" class="container-fluid wdt" style="padding: 100px 20px; background: linear-gradient(135deg, #330470, #37195e); ">
+        <div class="container-fluid row  align-items-center">-->
+    <!-- Left Side -->
+    <!--<div class="col-md-5 text-center border-end">
+        <img src="/Images/Profile.jpg" alt="Profile Picture" width="300" height="300" class="img-fluid rounded-circle shadow-lg" />
+        <h1 style="color:white; margin-top: 20px; font-weight: 600;">T.SabariGiri</h1>
+        <h5 style="color:#c5cae9; font-style: italic;">.NET Developer</h5>
+    </div>-->
+    <!-- Right Side -->
+    <!--<div class="col-md-7 ps-5" style="color:white;font-size:16px;">
+
+                <p style="text-align: justify; text-justify: inter-word;">
+                    As a dedicated <strong>
+                        .NET Developer with 2+ years
+                    </strong> of hands-on experience, I specialize
+                    in building and maintaining robust, user-focused applications, particularly in the domain
+                    of inventory management systems. I bring strong expertise in <strong>
+                           VB.NET, ASP.NET, C#, HTML, CSS, JavaScript, and SQL</strong>, along with practical experience using DevExpress components and Crystal Reports
+                    for advanced UI and reporting solutions. Throughout my career, I’ve worked on end-to-end
+                    development cycles—designing, coding, debugging, and optimizing enterprise-level
+                    software solutions that streamline inventory workflows and improve operational efficiency.
+                    I take pride in writing clean, maintainable code and collaborating with cross-functional
+                    teams to deliver timely, scalable solutions tailored to business needs. I'm actively
+                    looking to grow in a forward-thinking organization where I can contribute to
+                    meaningful projects and deepen my skills in modern .NET technologies and enterprise systems
+                </p>
+            </div>
+        </div>
+    </div>-->
+    <!-- About Section -->
+    <div id="About" class="container-fluid wdt"
+         style="padding: 30px; background: linear-gradient(135deg, #2a0845, #6441a5);"
+         data-aos="fade-up">
+        <h1 class="text-center text-white mb-4">About</h1>
+
+        <div class="container rounded-3 shadow-lg p-4" style="background: rgba(255,255,255,0.05);">
+
+            <div class="row align-items-center g-4">
+
+                <div class="col-12 col-md-5 text-center" data-aos="fade-right" data-aos-delay="200">
+                    <img src="Profile.jpg"
+                         alt="Profile Picture"
+                         class="img-fluid rounded-circle shadow-lg"
+                         style="width: 240px; height: 240px; object-fit: cover;" />
+                    <h1 class="text-white mt-3 fw-bold">T.SabariGiri</h1>
+                    <h5 class="text-light fst-italic">.NET Developer</h5>
+                </div>
+
+                <div class="col-12 col-md-7 text-white"
+                     style="font-size:16px; line-height:1.8; text-align:justify; text-justify:inter-word;"
+                     data-aos="fade-left" data-aos-delay="400">
+                    <p>
+                        As a dedicated <strong>.NET Developer with 2+ years</strong> of hands-on experience,
+                        I specialize in building and maintaining robust, user-focused applications,
+                        particularly in the domain of inventory management systems.
+                    </p>
+                    <p>
+                        I bring strong expertise in
+                        <span style="color:#ffcc80; font-weight:600;">
+                            VB.NET, ASP.NET, C#, HTML, CSS, JavaScript, and SQL
+                        </span>,
+                        along with practical experience using DevExpress components and Crystal Reports
+                        for advanced UI and reporting solutions.
+                    </p>
+                    <p>
+                        Throughout my career, I’ve worked on end-to-end development cycles—designing, coding,
+                        debugging, and optimizing enterprise-level software solutions that streamline inventory workflows
+                        and improve operational efficiency.
+                    </p>
+                    <p>
+                        I take pride in writing clean, maintainable code and collaborating with cross-functional
+                        teams to deliver timely, scalable solutions tailored to business needs.
+                        I'm actively looking to grow in a forward-thinking organization where I can contribute
+                        to meaningful projects and deepen my skills in modern .NET technologies and enterprise systems.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Education Section -->
+    <div id="Education" class="container-fluid py-5" style="background-color: #f4f4f4;" data-aos="fade-up">
+        <div class="container">
+            <h2 class="text-center mb-5" style="color:#2a0845; font-weight:bold;" data-aos="zoom-in">Education</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+
+                <div class="col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>B.Tech - Agricultural Engineering</strong></h5>
+                            <p class="card-text text-muted">
+                                Agricultural Engineering College and Research Institute,<br />
+                                TNAU, Trichy
+                            </p>
+                            <ul class="list-unstyled">
+                                <li><strong>GPA:</strong> 78.6</li>
+                                <li><strong>Year:</strong> 2018–2022</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>HSC</strong></h5>
+                            <p class="card-text text-muted">
+                                Palani Gounder Higher Secondary School,<br />
+                                Pollachi, Coimbatore
+                            </p>
+                            <ul class="list-unstyled">
+                                <li><strong>GPA:</strong> 94.75</li>
+                                <li><strong>Year:</strong> 2017–2018</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>SSLC</strong></h5>
+                            <p class="card-text text-muted">
+                                Government Higher Secondary School,<br />
+                                Seripalayam, Coimbatore
+                            </p>
+                            <ul class="list-unstyled">
+                                <li><strong>GPA:</strong> 96.20</li>
+                                <li><strong>Year:</strong> 2015–2016</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills Section -->
+    <div id="Skills" class="container-fluid py-5" style="background: linear-gradient(135deg, #2a0845, #6441a5); color: white;" data-aos="fade-up">
+        <div class="container" data-aos="fade-in">
+
+            <h2 class="text-center mb-4" style="font-weight:bold;">Skills</h2>
+
+            <!-- Tab Navigation -->
+            <ul class="nav nav-tabs justify-content-center mb-4 border-0" id="skillsTab" role="tablist" data-aos="fade-down" data-aos-delay="200">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="technical-tab" data-bs-toggle="tab" data-bs-target="#technical" type="button" role="tab">Technical Skills</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="soft-tab" data-bs-toggle="tab" data-bs-target="#soft" type="button" role="tab">Soft Skills</button>
+                </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content" id="skillsTabContent" data-aos="fade-up" data-aos-delay="400">
+
+                <!-- Technical Skills -->
+                <div class="tab-pane fade show active" id="technical" role="tabpanel">
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+
+                        <div class="col">
+                            <div class="border rounded p-3 shadow-sm h-100" style="background-color: rgba(255,255,255,0.05);">
+                                <h6 class="text-warning fw-bold mb-2">Languages & Frameworks</h6>
+                                <ul class="list-unstyled ms-3">
+                                    <li>ASP.NET</li>
+                                    <li>VB.NET</li>
+                                    <li>C#</li>
+                                    <li>HTML, CSS</li>
+                                    <li>JavaScript</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="border rounded p-3 shadow-sm h-100" style="background-color: rgba(255,255,255,0.05);">
+                                <h6 class="text-warning fw-bold mb-2">Reporting Tools</h6>
+                                <ul class="list-unstyled ms-3">
+                                    <li>DevExpress Grids</li>
+                                    <li>Crystal Reports</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="border rounded p-3 shadow-sm h-100" style="background-color: rgba(255,255,255,0.05);">
+                                <h6 class="text-warning fw-bold mb-2">Database</h6>
+                                <ul class="list-unstyled ms-3">
+                                    <li>SQL Server</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="border rounded p-3 shadow-sm h-100" style="background-color: rgba(255,255,255,0.05);">
+                                <h6 class="text-warning fw-bold mb-2">Development Tools</h6>
+                                <ul class="list-unstyled ms-3">
+                                    <li>Visual Studio 2008, 2013</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="tab-pane fade" id="soft" role="tabpanel">
+                    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 mt-3">
+
+                        <div class="col">
+                            <div class="p-3 border rounded text-center h-100" style="background-color: rgba(255,255,255,0.05);">Team Collaboration</div>
+                        </div>
+                        <div class="col">
+                            <div class="p-3 border rounded text-center h-100" style="background-color: rgba(255,255,255,0.05);">Critical Thinking</div>
+                        </div>
+                        <div class="col">
+                            <div class="p-3 border rounded text-center h-100" style="background-color: rgba(255,255,255,0.05);">Problem Solving</div>
+                        </div>
+                        <div class="col">
+                            <div class="p-3 border rounded text-center h-100" style="background-color: rgba(255,255,255,0.05);">Adaptability</div>
+                        </div>
+                        <div class="col">
+                            <div class="p-3 border rounded text-center h-100" style="background-color: rgba(255,255,255,0.05);">Communication Skills</div>
+                        </div>
+                        <div class="col">
+                            <div class="p-3 border rounded text-center h-100" style="background-color: rgba(255,255,255,0.05);">Time Management</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000, // animation duration in ms
+            once: true // whether animation should happen only once while scrolling down
+        });
+    </script>
+
+
+
+
+
+
+    <!-- AOS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <div id="Experience" class="container-fluid py-5" style="background: #0d1b2a; color: #e0e6f0;">
+        <div class="container">
+
+            <h2 class="text-center mb-5 fw-bold" style="color:#a9c0ff;">Experience</h2>
+
+            <div class="timeline">
+
+                <!-- Experience 1 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-duration="800">
+                    <div class="timeline-dot"></div>
+                    <div class="card bg-transparent border border-light text-light shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Junior Software Developer</h5>
+                            <h6 class="card-subtitle mb-2" style="color:#82aaff;">IDEATEC SOFTWARES (INDIA) PVT. LTD, Coimbatore</h6>
+                            <p class="card-text"><i class="bi bi-calendar3"></i> July 2023 – Present</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="timeline-dot"></div>
+                    <div class="card bg-transparent border border-light text-light shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Software Developer Intern</h5>
+                            <h6 class="card-subtitle mb-2" style="color:#82aaff;">IDEATEC SOFTWARES (INDIA) PVT. LTD, Coimbatore</h6>
+                            <p class="card-text"><i class="bi bi-calendar3"></i> May 2023 – June 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 3 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="timeline-dot"></div>
+                    <div class="card bg-transparent border border-light text-light shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Software Tester Intern (Manual)</h5>
+                            <h6 class="card-subtitle mb-2" style="color:#82aaff;">IDEATEC SOFTWARES (INDIA) PVT. LTD, Coimbatore</h6>
+                            <p class="card-text"><i class="bi bi-calendar3"></i> May 2023 – June 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+
+    <div id="Projects" class="container-fluid py-5" style="background-color: #222831; color: #eeeeee;">
+        <div class="container">
+            <h2 class="text-center mb-5" style="color:#ffcc80; font-weight:bold;">Projects</h2>
+
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+
+                <!-- Project 1 -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm" style="background-color: #393e46; color: #eeeeee; border-left: 5px solid #ffcc80; transition: transform 0.3s ease;">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Inventory Management System Software</h5>
+                            <ul>
+                                <li><strong>Platform:</strong> ASP.NET Using VB, Crystal Report, DevExpress Report</li>
+                                <li><strong>Database:</strong> SQL Server 2008</li>
+                                <li><strong>About:</strong> This software solution helps businesses track, manage, and control their inventory efficiently. It ensures accurate stock levels, reduces manual errors, and optimizes supply chain operations.</li>
+                                <li><strong>Description:</strong> Tracks stock levels, movements, and locations with real-time updates. Automates data entry via QR code scanning and alerts users on low stock. Manages orders, returns, and multi-location inventory while integrating with ERP and e-commerce systems. Provides analytics, user role control, and seamless reporting.</li>
+                                <li><strong>Impact:</strong> Reduced inventory discrepancies, optimized stock levels, and improved supply chain efficiency.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm" style="background-color: #393e46; color: #eeeeee; border-left: 5px solid #ffcc80; transition: transform 0.3s ease;">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Real-Time Monitoring System Software</h5>
+                            <ul>
+                                <li><strong>Platform:</strong> ASP.NET Using VB, Crystal Report, DevExpress Report</li>
+                                <li><strong>Database:</strong> SQL Server 2008</li>
+                                <li><strong>About:</strong> Developed and implemented a Real-Time Monitoring System for live data tracking, anomaly detection, and automated reporting.</li>
+                                <li><strong>Description:</strong> Continuously collects live data from sensors and APIs, providing real-time alerts for anomalies. Offers interactive dashboards, automated reporting, and trend analysis for informed decision-making. Ensures security with role-based access and scalable multi-location support.</li>
+                                <li><strong>Impact:</strong> Enhanced operational efficiency, reduced downtime, and improved decision-making.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm" style="background-color: #393e46; color: #eeeeee; border-left: 5px solid #ffcc80; transition: transform 0.3s ease;">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Dyeing ERP Software</h5>
+                            <ul>
+                                <li><strong>Platform:</strong> ASP.NET Using VB, Crystal Report, DevExpress Report</li>
+                                <li><strong>Database:</strong> SQL Server 2008</li>
+                                <li><strong>About:</strong> Designed and implemented to streamline batch tracking, optimize production, and generate real-time reports.</li>
+                                <li><strong>Description:</strong> Tracks batch movements from raw materials to finished products with real-time monitoring. Automates dye formulation, process parameters, and machine efficiency tracking. Manages inventory, cost control, and minimizes wastage while providing detailed batch-wise reporting and quality analysis.</li>
+                                <li><strong>Impact:</strong> Improved productivity, reduced costs, enhanced quality control, and ensured compliance.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <style>
+                /*body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    background: #fff;
+                    color: #222;
+                }*/
+
+                .section-container {
+                    background: #ffffff;
+                    border-radius: 12px;
+                    padding: 25px 30px;
+                    margin-bottom: 40px;
+                    box-shadow: 0 6px 15px rgba(100, 65, 165, 0.1);
+                    transition: box-shadow 0.3s ease;
+                }
+
+                    .section-container:hover {
+                        box-shadow: 0 12px 30px rgba(100, 65, 165, 0.2);
+                    }
+
+                    .section-container h2 {
+                        font-weight: 700;
+                        color: #6441a5;
+                        font-size: 24px;
+                        border-left: 5px solid #6441a5;
+                        padding-left: 12px;
+                        margin-bottom: 20px;
+                        letter-spacing: 1px;
+                        text-transform: uppercase;
+                    }
+
+                /* ul {
+                    list-style: none;
+                    padding-left: 0;
+                }
+
+                    ul li {
+                        font-size: 16px;
+                        line-height: 1.5;
+                        margin-bottom: 14px;
+                        padding-left: 18px;
+                        position: relative;
+                        color: #444;
+                        cursor: default;
+                    }
+
+                        ul li::before {
+                            content: '✓';
+                            position: absolute;
+                            left: 0;
+                            color: #6441a5;
+                            font-weight: 700;
+                            font-size: 18px;
+                        }
+
+                        ul li strong {
+                            font-weight: 700;
+                            color: #2a0845;
+                        }
+        */
+                /* Languages bullet style */
+                .languages-list li::before {
+                    left: 0;
+                    color: #9c7de0;
+                    font-weight: 700;
+                    font-size: 18px;
+                }
+
+                /* Contact Info */
+                .contact-info {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 14px;
+                    font-size: 16px;
+                    color: #333;
+                }
+
+                .contact-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    padding: 8px 12px;
+                    border-radius: 8px;
+                    background: #f6f3fb;
+                    transition: background-color 0.3s ease, color 0.3s ease;
+                }
+
+                    .contact-item:hover {
+                        background: #6441a5;
+                        color: #fff;
+                    }
+
+                    .contact-item svg {
+                        fill: #6441a5;
+                        min-width: 22px;
+                        transition: fill 0.3s ease;
+                    }
+
+                    .contact-item:hover svg {
+                        fill: #fff;
+                    }
+
+                .contact-link {
+                    color: #6441a5;
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                }
+
+                    .contact-link:hover {
+                        text-decoration: underline;
+                        color: #fff;
+                    }
+    </style>
+
+    <div class="section-container" id="achievements">
+        <h2>Achievements</h2>
+        <ul>
+            <li><strong>Resolved multi-tab session handling issues</strong>, improving user session stability and reducing user complaints by 40%.</li>
+            <li><strong>Redesigned and standardized Crystal Reports layouts</strong>, increasing reporting accuracy and reducing formatting errors by 30%.</li>
+        </ul>
+    </div>
+
+    <div class="section-container" id="languages">
+        <h2>Languages Known</h2>
+        <ul class="languages-list">
+            <li>Tamil (Native)</li>
+            <li>English (Proficient)</li>
+        </ul>
+    </div>
+
+    <div class="section-container" id="contact">
+        <h2>Contact</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                9944586433
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path d="M6.62 10.79a15.09 15.09 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21 11.72 11.72 0 003.7.59 1 1 0 011 1v3.29a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.29a1 1 0 011 1 11.72 11.72 0 00.59 3.7 1 1 0 01-.26 1.11z" /></svg>
+            </div>
+            <div class="contact-item">
+                Coimbatore, India
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM7 9a5 5 0 0110 0c0 2.71-2.91 6.79-5 9.88C9.9 15.88 7 11.71 7 9z" /></svg>
+            </div>
+            <div class="contact-item">
+                <a href="mailto:sabaritsg9929@gmail.com" class="contact-link" target="_blank" rel="noopener noreferrer">sabaritsg9929@gmail.com</a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" /></svg>
+            </div>
+            <div class="contact-item">
+                <a href="https://www.linkedin.com/in/sabarigiri-tsg-ab79221b0" class="contact-link" target="_blank" rel="noopener noreferrer">linkedin.com/in/sabarigiri-tsg-ab79221b0</a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path d="M19 3A2 2 0 0121 5v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zm-9 14v-6H7v6h3zm-1.5-7.75A1.75 1.75 0 017.75 8a1.75 1.75 0 110 3.5zm10.5 7.75v-3.25a2 2 0 00-4 0v3.25h-3v-6h3v1.25a3.5 3.5 0 016 0v4.75z" /></svg>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Resume Section -->
+    <div class="container-fluid py-5" style="background: linear-gradient(to right, #6441a5, #2a0845);">
+        <div class="container text-center">
+            <h2 class="text-white fw-bold mb-4">Download My Resume</h2>
+            <p class="text-light mb-4">Get a copy of my latest resume in PDF format.</p>
+
+            <a href="T.SabariGiri.pdf" download class="btn btn-resume">
+                <i class="bi bi-download me-2"></i>Download Resume
+            </a>
+        </div>
+    </div>
+
+    <!-- Resume Button Styling -->
+    <style>
+        .btn-resume {
+            background-color: #ffcc80;
+            color: #2a0845;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .btn-resume:hover {
+                background-color: #fff;
+                color: #2a0845;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+            }
+    </style>
+
+
+
+
+    <!-- AOS JS, put before </body> -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
