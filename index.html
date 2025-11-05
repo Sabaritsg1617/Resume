@@ -3,58 +3,97 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Camera + QR Scanner</title>
+<title>Camera + QR Scanner + Video Recorder</title>
 
 <style>
   body { font-family: Arial, sans-serif; margin: 20px; font-size: 1.2rem; }
-  label { font-weight: bold; }
+  label { font-weight: bold; display: block; margin-top: 15px; }
   #reader { width: 300px; margin-top: 15px; border: 2px solid #444; }
   #result-box { margin-top: 10px; font-size: 1.4rem; font-weight: bold; color: green; }
+  #previewVideo { width: 320px; border: 2px solid #444; margin-top: 10px; }
+  button { font-size: 1.2rem; padding: 10px 20px; margin-top: 10px; }
 </style>
 
-<!-- QR Scanner Library -->
 <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 
 <body>
 
-<h2>📷 Camera & QR Scanner</h2>
+<h2>📷 Camera + QR + Video Recorder</h2>
 
-<!-- Capture from Rear Camera -->
-<label for="environment">Capture from Back Camera:</label><br>
-<input type="file" id="environment" capture="environment" accept="image/*,video/*" />
-<br><br>
+<!-- Capture Rear -->
+<label>Capture from Back Camera:</label>
+<input type="file" capture="environment" accept="image/*,video/*">
 
-<!-- Capture from Front Camera -->
-<label for="user">Capture from Front Camera:</label><br>
-<input type="file" id="user" capture="user" accept="image/*" />
-<br><br>
+<!-- Capture Front -->
+<label>Capture from Front Camera:</label>
+<input type="file" capture="user" accept="image/*">
 
 <hr>
 
-<h3>🔍 QR Code Scanner (Rear Camera)</h3>
-<div id="reader"></div>
+<!-- Video Recorder -->
+<h3>🎥 Video Recorder</h3>
+<video id="previewVideo" autoplay playsinline></video><br>
+<button id="startRec">Start Recording</button>
+<button id="stopRec" disabled>Stop Recording</button>
+<a id="downloadLink" style="display:none;">Download Video</a>
 
+<script>
+let mediaStream;
+let mediaRecorder;
+let recordedChunks = [];
+
+async function startCamera() {
+  mediaStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+  document.getElementById("previewVideo").srcObject = mediaStream;
+}
+
+document.getElementById("startRec").onclick = () => {
+  recordedChunks = [];
+  mediaRecorder = new MediaRecorder(mediaStream);
+
+  mediaRecorder.ondataavailable = e => {
+    if (e.data.size > 0) recordedChunks.push(e.data);
+  };
+
+  mediaRecorder.onstop = () => {
+    const blob = new Blob(recordedChunks, { type: "video/webm" });
+    const url = URL.createObjectURL(blob);
+    const link = document.getElementById("downloadLink");
+    link.href = url;
+    link.download = "RecordedVideo.webm";
+    link.style.display = "block";
+    link.innerText = "⬇️ Download Recorded Video";
+  };
+
+  mediaRecorder.start();
+  document.getElementById("startRec").disabled = true;
+  document.getElementById("stopRec").disabled = false;
+};
+
+document.getElementById("stopRec").onclick = () => {
+  mediaRecorder.stop();
+  document.getElementById("startRec").disabled = false;
+  document.getElementById("stopRec").disabled = true;
+};
+
+// Start camera preview
+startCamera();
+</script>
+
+<hr>
+
+<!-- QR Scanner -->
+<h3>🔍 QR Code Scanner</h3>
+<div id="reader"></div>
 <div id="result-box">Result will appear here...</div>
 
 <script>
-function onScanSuccess(decodedText, decodedResult) {
-    document.getElementById("result-box").innerHTML = "✅ QR Code: " + decodedText;
-
-    // If you want to stop scanning after success:
-    // html5QrcodeScanner.clear();
+function onScanSuccess(decodedText) {
+  document.getElementById("result-box").innerHTML = "✅ QR Code: " + decodedText;
 }
-
-function onScanError(err) {
-    // Ignore errors during scan
-}
-
-let html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader",
-    { fps: 10, qrbox: 250 }
-);
-
-html5QrcodeScanner.render(onScanSuccess, onScanError);
+let qrScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250 });
+qrScanner.render(onScanSuccess);
 </script>
 
 </body>
